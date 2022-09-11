@@ -245,7 +245,7 @@ Decimal   Description             References
       <section>
         <name>RPKI Signed Objects sub-registry</name>
         <t>
-          The IANA is requested to register the OID for the RPKI Signed Checklist in the "RPKI Signed Objects" registry created by <xref target="RFC6488"/> as follows:
+          The IANA has registered the OID for the RPKI Signed Checklist in the "RPKI Signed Objects" registry created by <xref target="RFC6488"/> as follows:
         </t>
         <artwork>
 <![CDATA[
@@ -290,7 +290,7 @@ Decimal  Description                      References
       <section>
         <name>Media Type</name>
         <t>
-          The IANA has registered the media type application/rpki-checklist in the "Provisional Standard Media Type" registry as follows:
+          The IANA is requested to update the media type application/rpki-roa in the "Provisional Standard Media Type" registry as follows:
         </t>
         <artwork>
 <![CDATA[
@@ -365,7 +365,7 @@ Decimal  Description                      References
       <name>Acknowledgements</name>
       <t>
         Matt Lepinski, Stephen Kent, and Derrick Kong authored the original ROA profile specification.
-        The global Internet routing community owes a debt of gratitude to Matt Lepinski, Stephen Kent, and Derrick Kong for this crafting a cornerstone of modern day routing safety.
+        The global Internet routing community owes a debt of gratitude to Matt Lepinski, Stephen Kent, and Derrick Kong for crafting this cornerstone of modern day routing safety.
       </t>
       <t>
         The original authors wished to thank Charles Gardiner and Russ Housley for their help and contributions.

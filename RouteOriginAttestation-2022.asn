@@ -33,6 +33,6 @@ ROAIPAddress ::= SEQUENCE {
   address IPAddress,
   maxLength INTEGER (0..128) OPTIONAL }
 
-IPAddress ::= BIT STRING (SIZE (1..128))
+IPAddress ::= BIT STRING (SIZE (0..128))
 
 END
