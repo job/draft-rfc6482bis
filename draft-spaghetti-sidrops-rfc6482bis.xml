@@ -263,9 +263,9 @@ ROA               1.2.840.113549.1.9.16.1.24  [RFC6482][RFC-TBD]
         </t>
         <artwork>
 <![CDATA[
-Filename Extension  RPKI Object                      Reference
--------------------------------------------------------------------
-       .roa         Route Origination Authorizationi [RFC6481][RFC-to-be]
+Filename Extension  RPKI Object                     Reference
+------------------------------------------------------------------------
+       .roa         Route Origination Authorization [RFC6481][RFC-to-be]
 ]]>
         </artwork>
         <t>
