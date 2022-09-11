@@ -290,7 +290,7 @@ Decimal  Description                      References
       <section>
         <name>Media Type</name>
         <t>
-          The IANA is requested to update the media type application/rpki-roa in the "Provisional Standard Media Type" registry as follows:
+          The IANA is requested to update the media type application/rpki-roa in the "Media Type" registry as follows:
         </t>
         <artwork>
 <![CDATA[
@@ -318,9 +318,6 @@ Decimal  Description                      References
    Change controller: IETF
 ]]>
         </artwork>
-        <t>
-          Upon publication of this document, IANA is requested to move this registation to the "Media Types" registry and to reference the RFC publication instead of this draft.
-        </t>
       </section>
 
     </section>
