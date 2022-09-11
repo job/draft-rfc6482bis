@@ -26,13 +26,18 @@ RouteOriginAttestation ::= SEQUENCE {
 ASID ::= INTEGER (0..4294967295)
 
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily OCTET STRING (FROM('0001'H | '0002'H)),
+  addressFamily OCTET STRING
+      (CONSTRAINED BY { -- must be either of '0001'H or '0002'H -- }),
   addresses SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress }
 
 ROAIPAddress ::= SEQUENCE {
   address IPAddress,
-  maxLength INTEGER (0..128) OPTIONAL }
+  maxLength INTEGER (0..128) OPTIONAL
+      (CONSTRAINED BY { -- can't be less than length of IPAddress --
+                        -- can't be more than the AFI permits -- }) }
 
 IPAddress ::= BIT STRING (SIZE(0..128))
+      (CONSTRAINED BY { -- If IPv4 size can't exceed 32, --
+                        -- if IPv6 can't exceed 128 -- })
 
 END
