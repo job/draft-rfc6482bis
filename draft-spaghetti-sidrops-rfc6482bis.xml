@@ -218,7 +218,7 @@
       </t>
       <t>
         The right of the ROA signer to authorize the target AS to originate routes to the prefix(es) is established through use of the address space and AS number PKI described in <xref target="RFC6480"/>.
-        Specifically, one MUST verify the signature on the ROA using an X.509 certificate issued under this PKI, and check that the prefix(es) in the ROA match those in the certificate's address space extension.
+        Specifically, one MUST verify the signature on the ROA using an X.509 certificate issued under this PKI, and check that the prefix(es) in the ROA are contained within those in the certificate's IP Address Delegation Extension.
       </t>
     </section>
 
