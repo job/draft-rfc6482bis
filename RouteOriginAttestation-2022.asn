@@ -1,4 +1,4 @@
-id-mod-rpkiROA { iso(1) member-body(2) us(840) rsadsi(113549)
+RPKI-ROA-2022 { iso(1) member-body(2) us(840) rsadsi(113549)
   pkcs(1) pkcs9(9) smime(16) mod(0) id-mod-rpkiROA-2022(TBD) }
 
 DEFINITIONS EXPLICIT TAGS ::=
@@ -26,18 +26,20 @@ RouteOriginAttestation ::= SEQUENCE {
 ASID ::= INTEGER (0..4294967295)
 
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily         OCTET STRING (SIZE(2)) (CONSTRAINED BY {
-     -- Value can only be '0001'H (IPv4) or '0002'H (IPv6). -- }),
-  addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress }
+  addressFamily         OCTET STRING (SIZE(2)),
+  addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress
+} (CONSTRAINED BY {
+  -- addressFamily can only be '0001'H (IPv4) or '0002'H (IPv6) -- })
 
 ROAIPAddress ::= SEQUENCE {
   address               IPAddress,
-  maxLength             INTEGER (0..128) OPTIONAL (CONSTRAINED BY {
-     -- Value must be equal or larger than size of IPAddress, --
-     -- and equal or smaller to what the AFI context permits. -- }) }
+  maxLength             INTEGER (0..128) OPTIONAL
+} (CONSTRAINED BY {
+  -- maxLength must be equal or larger than size of IPAddress, --
+  -- and equal or smaller to what the AFI context permits -- })
 
 IPAddress ::= BIT STRING (SIZE(0..128)) (CONSTRAINED BY {
-     -- If addressFamily is IPv4: size can't exceed 32. --
-     -- If addressFamily is IPv6: size can't exceed 128. -- })
+  -- If addressFamily is IPv4: size can't exceed 32 --
+  -- If addressFamily is IPv6: size can't exceed 128 -- })
 
 END

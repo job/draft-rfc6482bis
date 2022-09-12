@@ -301,11 +301,12 @@ Decimal  Description                      References
    Required parameters: N/A
    Optional parameters: N/A
    Encoding considerations: binary
-   Security considerations: Carries an RPKI Signed Checklist
-                            [RFC-to-be].
+   Security considerations: Carries an RPKI ROA [RFC-to-be].
+       This media type contains no active content. See
+       Section 6 of [RFC-to-be] for further information.
    Interoperability considerations: None
    Published specification: [RFC-to-be]
-   Applications that use this media type: RPKI operators.
+   Applications that use this media type: RPKI operators
    Additional information:
      Content: This media type is a signed object, as defined
          in [RFC6488], which contains a payload of a list of
