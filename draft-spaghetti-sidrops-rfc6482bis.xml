@@ -98,6 +98,7 @@
           <li>Clarifications on the requirements for IP Addresses and AS Identifiers X.509 certificate extension.</li>
           <li>Strengthening of ASN.1 formal notation.</li>
           <li>Incorporate errata.</li>
+          <li>Add an example ROA payload and ROA as appendix.</li>
         </ul>
       </section>
     </section>
