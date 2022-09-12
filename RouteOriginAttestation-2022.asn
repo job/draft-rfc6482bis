@@ -39,7 +39,7 @@ ROAIPAddress ::= SEQUENCE {
   -- and equal or smaller to what the AFI context permits -- })
 
 IPAddress ::= BIT STRING (SIZE(0..128)) (CONSTRAINED BY {
-  -- If addressFamily is IPv4: size can't exceed 32 --
-  -- If addressFamily is IPv6: size can't exceed 128 -- })
+  -- If addressFamily is IPv4, size can't exceed 32 --
+  -- If addressFamily is IPv6, size can't exceed 128 -- })
 
 END
