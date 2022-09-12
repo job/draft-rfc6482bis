@@ -85,7 +85,7 @@
           The ROA eContent is ASN.1 encoded using the Distinguished Encoding Rules (DER) <xref target="X.690"/>.
         </li>
         <li>
-          An additional step required to validate ROAs (in addition to the validation steps specified in <xref target="RFC6488"/>).
+          Additional steps required to validate ROAs (in addition to the validation steps specified in <xref target="RFC6488"/>).
         </li>
       </ul>
 
