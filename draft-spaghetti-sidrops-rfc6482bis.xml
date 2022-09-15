@@ -174,7 +174,8 @@
           (See [RFC3779] for more details).
           If present, the maxLength MUST be an integer greater than or equal to the length of the accompanying prefix, and less than or equal to the length (in bits) of an IP address in the address family (32 for IPv4 and 128 for IPv6).
           When present, the maxLength specifies the maximum length of the IP address prefix that the AS is authorized to advertise.
-          (For example, if the IP address prefix is 203.0.113/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.  In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.)
+          (For example, if the IP address prefix is 203.0.113/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.
+          In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.)
           When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROA.
         </t>
         <t>
