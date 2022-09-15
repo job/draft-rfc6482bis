@@ -178,13 +178,25 @@
           In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.)
           When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROA.
         </t>
-        <t>
-          Note that a valid ROA may contain an IP address prefix (within a ROAIPAddress element) that is encompassed by another IP address prefix (within a separate ROAIPAddress element).
-          For example, a ROA may contain the prefix 203.0.113/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
-          (Such a ROA would authorize the indicated AS to advertise any prefix beginning with 203.0.113 with a minimum length of 24 and a maximum length of 26, as well as the specific prefix 203.0.113.0/28.)
-          Additionally, a ROA MAY contain two ROAIPAddress elements, where the IP address prefix is identical in both cases.
-          However, this is NOT RECOMMENDED as, in such a case, the ROAIPAddress with the shorter maxLength grants no additional privileges to the indicated AS and thus can be omitted without changing the meaning of the ROA.
-          </t>
+       <section>
+         <name>Note on redundant information in ROAIPAddress structures</name>
+         <t>
+           The following example does not contain redundant information:
+         </t>
+         <t>
+           A valid ROA may contain an IP address prefix (within a ROAIPAddress element) that is encompassed by another IP address prefix (within a separate ROAIPAddress element).
+           For example, a ROA may contain the prefix 203.0.113/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
+           Such a ROA would authorize the indicated AS to advertise any prefix encompassed within 203.0.113.0/24 with a minimum length of 24 and a maximum prefix length of 26, as well as the specific prefix 203.0.113.0/28.
+         </t>
+         <t>
+           The following example ROA configuration contains redundant information:
+         </t>
+         <t>
+           A ROA might contain two ROAIPAddress elements where the IP address prefix is identical in both elements, but with different maxLength values.
+           Another variant of redundant information is where one prefix in a ROAIPAddress element is a more specifix prefix of another encompassing prefix in another ROAIPAddress in the same ROA, with an equal or shorter maxLength value.
+           In such cases the ROAIPAddress with the equal or shorter maxLength grants no additional privileges to the indicated AS and thus SHOULD be omitted, as the information contained does not change the meaning of the ROA.
+           </t>
+         </section>
         </section>
       </section>
 
