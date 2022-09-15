@@ -386,7 +386,7 @@ $ echo 302402023CCA301E301C04020002301630090307002001067C208C30090307002A0EB2400
   | xxd -r -ps \
   | openssl asn1parse -i -dump -inform DER
     0:d=0  hl=2 l=  36 cons: SEQUENCE                   # RouteOriginAttestation
-    2:d=1  hl=2 l=   2 prim:  INTEGER           :3CCA   # ASID 15562
+    2:d=1  hl=2 l=   2 prim:  INTEGER           :3CCA   # asID 15562
     6:d=1  hl=2 l=  30 cons:  SEQUENCE                  # ipAddrBlocks
     8:d=2  hl=2 l=  28 cons:   SEQUENCE                 #  ROAIPAddressFamily
    10:d=3  hl=2 l=   2 prim:    OCTET STRING            #   addressFamily
