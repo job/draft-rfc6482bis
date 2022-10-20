@@ -1,4 +1,4 @@
-NAME=draft-spaghetti-sidrops-rfc6482bis
+NAME=draft-ietf-sidrops-rfc6482bis
 
 .PHONY: all
 all: drafts
@@ -10,4 +10,4 @@ $(NAME).txt: $(NAME).xml
 	xml2rfc $(NAME).xml --html --text --expand
 
 clean:
-	rm -f *.html *.txt draft-spaghetti-sidrops-rfc6482bis.exp.xml
+	rm -f *.html *.txt draft-ietf-sidrops-rfc6482bis.exp.xml

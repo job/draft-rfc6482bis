@@ -10,7 +10,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-spaghetti-sidrops-rfc6482bis-00"
+     docName="draft-ietf-sidrops-rfc6482bis-00"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -25,7 +25,7 @@
       A Profile for Route Origin Authorizations (ROAs)
     </title>
 
-    <seriesInfo name="Internet-Draft" value="draft-spaghetti-sidrops-rfc6482bis"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-sidrops-rfc6482bis"/>
 
     <author fullname="Job Snijders" initials="J." surname="Snijders" role="editor">
       <organization>Fastly</organization>
