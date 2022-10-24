@@ -1,5 +1,5 @@
 RPKI-ROA-2022 { iso(1) member-body(2) us(840) rsadsi(113549)
-  pkcs(1) pkcs9(9) smime(16) mod(0) id-mod-rpkiROA-2022(TBD) }
+  pkcs(1) pkcs9(9) smime(16) mod(0) id-mod-rpkiROA-2022(999) }
 
 DEFINITIONS EXPLICIT TAGS ::=
 BEGIN
@@ -8,7 +8,7 @@ IMPORTS
   CONTENT-TYPE
   FROM CryptographicMessageSyntax-2010 -- in [RFC6268]
     { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
-      pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) }
+      pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) } ;
 
 ct-routeOriginAttestation CONTENT-TYPE ::=
   { TYPE RouteOriginAttestation
@@ -25,21 +25,29 @@ RouteOriginAttestation ::= SEQUENCE {
 
 ASID ::= INTEGER (0..4294967295)
 
+AFI ::= CLASS {
+  &afi          OCTET STRING (SIZE(2)) UNIQUE,
+  &Address
+} WITH SYNTAX { AFI &afi ADDRESS &Address }
+
+AddressFamilySet AFI ::= { afi-IPv4 | afi-IPv6 }
+
+afi-IPv4 AFI ::= { AFI '0001'H ADDRESS ROAIPv4Address }
+ROAIPv4Address ::= SEQUENCE {
+  address       IPv4Address,
+  maxLength     IPv4Length OPTIONAL }
+IPv4Address ::= BIT STRING (SIZE(0..32))
+IPv4Length  ::= INTEGER (0..32)
+
+afi-IPv6 AFI ::= { AFI '0002'H ADDRESS ROAIPv6Address }
+ROAIPv6Address ::= SEQUENCE {
+  address       IPv6Address,
+  maxLength     IPv6Length OPTIONAL }
+IPv6Address ::= BIT STRING (SIZE(0..128))
+IPv6Length  ::= INTEGER (0..128)
+
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily         OCTET STRING (SIZE(2)),
-  addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress
-} (CONSTRAINED BY {
-  -- addressFamily can only be '0001'H (IPv4) or '0002'H (IPv6) -- })
-
-ROAIPAddress ::= SEQUENCE {
-  address               IPAddress,
-  maxLength             INTEGER (0..128) OPTIONAL
-} (CONSTRAINED BY {
-  -- maxLength must be equal or larger than size of IPAddress, --
-  -- and equal or smaller to what the AFI context permits -- })
-
-IPAddress ::= BIT STRING (SIZE(0..128)) (CONSTRAINED BY {
-  -- If addressFamily is IPv4, size can't exceed 32 --
-  -- If addressFamily is IPv6, size can't exceed 128 -- })
+  addressFamily AFI.&afi({AddressFamilySet}),
+  addresses     SEQUENCE (SIZE(1..MAX)) OF AFI.&Address({AddressFamilySet}{@addressFamily}) }
 
 END
