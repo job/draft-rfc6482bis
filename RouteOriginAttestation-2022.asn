@@ -19,35 +19,36 @@ id-ct-routeOriginAuthz OBJECT IDENTIFIER ::=
     pkcs-9(9) id-smime(16) id-ct(1) routeOriginAuthz(24) }
 
 RouteOriginAttestation ::= SEQUENCE {
-  version [0]           INTEGER DEFAULT 0,
-  asID                  ASID,
-  ipAddrBlocks          SEQUENCE (SIZE(1..2)) OF ROAIPAddressFamily }
+  version [0]    INTEGER DEFAULT 0,
+  asID           ASID,
+  ipAddrBlocks   SEQUENCE (SIZE(1..2)) OF ROAIPAddressFamily }
 
 ASID ::= INTEGER (0..4294967295)
 
 AFI ::= CLASS {
-  &afi          OCTET STRING (SIZE(2)) UNIQUE,
+  &afi           OCTET STRING (SIZE(2)) UNIQUE,
   &Address
 } WITH SYNTAX { AFI &afi ADDRESS &Address }
 
 AddressFamilySet AFI ::= { afi-IPv4 | afi-IPv6 }
 
-afi-IPv4 AFI ::= { AFI '0001'H ADDRESS ROAIPv4Address }
+afi-IPv4 AFI   ::= { AFI '0001'H ADDRESS ROAIPv4Address }
 ROAIPv4Address ::= SEQUENCE {
-  address       IPv4Address,
-  maxLength     IPv4Length OPTIONAL }
-IPv4Address ::= BIT STRING (SIZE(0..32))
-IPv4Length  ::= INTEGER (0..32)
+  address        IPv4Address,
+  maxLength      IPv4Length OPTIONAL }
+IPv4Address    ::= BIT STRING (SIZE(0..32))
+IPv4Length     ::= INTEGER (0..32)
 
-afi-IPv6 AFI ::= { AFI '0002'H ADDRESS ROAIPv6Address }
+afi-IPv6 AFI   ::= { AFI '0002'H ADDRESS ROAIPv6Address }
 ROAIPv6Address ::= SEQUENCE {
-  address       IPv6Address,
-  maxLength     IPv6Length OPTIONAL }
-IPv6Address ::= BIT STRING (SIZE(0..128))
-IPv6Length  ::= INTEGER (0..128)
+  address        IPv6Address,
+  maxLength      IPv6Length OPTIONAL }
+IPv6Address    ::= BIT STRING (SIZE(0..128))
+IPv6Length     ::= INTEGER (0..128)
 
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily AFI.&afi({AddressFamilySet}),
-  addresses     SEQUENCE (SIZE(1..MAX)) OF AFI.&Address({AddressFamilySet}{@addressFamily}) }
+  addressFamily  AFI.&afi({AddressFamilySet}),
+  addresses      SEQUENCE (SIZE(1..MAX)) OF
+                 AFI.&Address({AddressFamilySet}{@addressFamily}) }
 
 END
