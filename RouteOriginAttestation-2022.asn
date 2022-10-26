@@ -25,30 +25,58 @@ RouteOriginAttestation ::= SEQUENCE {
 
 ASID ::= INTEGER (0..4294967295)
 
+-- AFI
+--
+-- Information object class describing an IP address family.
+--
+-- Instances of this class provide a mapping between the numeric
+-- IP AFI and the ASN.1 type representing a (prefix, length)
+-- pair in that address family.
+--
 AFI ::= CLASS {
-  &afi           OCTET STRING (SIZE(2)) UNIQUE,
-  &Address
-} WITH SYNTAX { AFI &afi ADDRESS &Address }
+    &afi            OCTET STRING (SIZE(2)) UNIQUE,
+    &Address
+} WITH SYNTAX { AFI &afi WITH ADDRESS TYPE &Address }
 
-AddressFamilySet AFI ::= { afi-IPv4 | afi-IPv6 }
+-- Named constants for IPv4 and IPv6 AFIs
+ipv4 OCTET STRING ::= '0001'H
+ipv6 OCTET STRING ::= '0002'H
 
-afi-IPv4 AFI   ::= { AFI '0001'H ADDRESS ROAIPv4Address }
-ROAIPv4Address ::= SEQUENCE {
-  address        IPv4Address,
-  maxLength      IPv4Length OPTIONAL }
-IPv4Address    ::= BIT STRING (SIZE(0..32))
-IPv4Length     ::= INTEGER (0..32)
+-- AddressFamilySet
+--
+-- The set of valid instances of the AFI information object class.
+--
+AddressFamilySet AFI ::= {
+    { AFI ipv4 WITH ADDRESS TYPE ROAIPAddress{32}  } |
+    { AFI ipv6 WITH ADDRESS TYPE ROAIPAddress{128} }
+}
 
-afi-IPv6 AFI   ::= { AFI '0002'H ADDRESS ROAIPv6Address }
-ROAIPv6Address ::= SEQUENCE {
-  address        IPv6Address,
-  maxLength      IPv6Length OPTIONAL }
-IPv6Address    ::= BIT STRING (SIZE(0..128))
-IPv6Length     ::= INTEGER (0..128)
+-- ROAIPAddress
+--
+-- A generic representation of an IP (prefix, length) pair.
+--
+-- The parameter represents the maximum valid address length for the
+-- IP address family, and contrains both the length of the address
+-- field and the range of the maxLength field.
+--
+ROAIPAddress {INTEGER: len} ::= SEQUENCE {
+    address         BIT STRING (SIZE(0..len)),
+    maxLength       INTEGER (0..len) }
 
+-- ROAIPAddressFamily
+--
+-- The AFI of an IP address family along with a listing of ROAIPAddress
+-- elements of that IP address family.
+--
+-- The permissible values of addressFamily is contrained by the values
+-- appearing in the afi field of an element of AddressFamilySet.
+-- The types of elements appearing in the addresses field is determined
+-- with respect to the Address field of the AFI instance whose afi appears
+-- in addressFamily.
+--
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily  AFI.&afi({AddressFamilySet}),
-  addresses      SEQUENCE (SIZE(1..MAX)) OF
-                 AFI.&Address({AddressFamilySet}{@addressFamily}) }
+    addressFamily   AFI.&afi({AddressFamilySet}),
+    addresses       SEQUENCE (SIZE(1..MAX)) OF
+                    AFI.&Address({AddressFamilySet}{@addressFamily}) }
 
 END
