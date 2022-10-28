@@ -10,7 +10,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-ietf-sidrops-rfc6482bis-00"
+     docName="draft-ietf-sidrops-rfc6482bis-01"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -27,7 +27,7 @@
 
     <seriesInfo name="Internet-Draft" value="draft-ietf-sidrops-rfc6482bis"/>
 
-    <author fullname="Job Snijders" initials="J." surname="Snijders" role="editor">
+    <author fullname="Job Snijders" initials="J." surname="Snijders">
       <organization>Fastly</organization>
       <address>
         <postal>
@@ -37,6 +37,45 @@
           <country>Netherlands</country>
         </postal>
         <email>job@fastly.com</email>
+      </address>
+    </author>
+
+    <author fullname="Matthew Lepinski" initials="M." surname="Lepinski">
+      <organization>New College Florida</organization>
+      <address>
+        <postal>
+          <street/>
+          <code/>
+          <city/>
+          <country/>
+        </postal>
+        <email>mlepinski@ncf.edu</email>
+      </address>
+    </author>
+
+    <author fullname="Derrick Kong" initials="D." surname="Kong">
+      <organization>Raytheon</organization>
+      <address>
+        <postal>
+          <street/>
+          <code/>
+          <city />
+          <country/>
+        </postal>
+        <email>derrick.kong@raytheon.com</email>
+      </address>
+    </author>
+
+    <author fullname="Stephen Kent" initials="S." surname="Kent">
+      <organization>Independent</organization>
+      <address>
+        <postal>
+          <street/>
+          <code/>
+          <city/>
+          <country/>
+        </postal>
+        <email>kent@alum.mit.edu</email>
       </address>
     </author>
 
