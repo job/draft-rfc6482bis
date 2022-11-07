@@ -406,12 +406,8 @@ Decimal  Description                      References
     <section anchor="acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        Matt Lepinski, Stephen Kent, and Derrick Kong authored the original RPKI ROA profile specification.
-        The global Internet routing community owes a debt of gratitude to Matt Lepinski, Stephen Kent, and Derrick Kong for crafting this cornerstone of modern day routing safety.
-      </t>
-      <t>
-        The original authors wished to thank Charles Gardiner and Russ Housley for their help and contributions.
-        Additionally, the original authors thank Rob Austein, Roque Gagliano, Danny McPherson, and Sam Weiler for their careful reviews and helpful comments.
+        The authors wish to thank Charles Gardiner and Russ Housley for their help and contributions.
+        Additionally, the authors thank Rob Austein, Roque Gagliano, Danny McPherson, and Sam Weiler for their careful reviews and helpful comments.
       </t>
     </section>
 
