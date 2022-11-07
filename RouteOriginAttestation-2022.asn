@@ -38,8 +38,9 @@ ROAIPAddress ::= SEQUENCE {
   maxLength             INTEGER (0..128) OPTIONAL
 } 
 
+-- Note: if the ROAIPAddressFamily's addressFamily is IPv4, the  --
+-- IPAddress' size cannot exceed 32; conversely if addressFamily --
+-- is IPv6, size can't exceed 128.                               --
 IPAddress ::= BIT STRING (SIZE(0..128))
-  -- Note: if addressFamily is IPv4, size can't exceed 32, --
-  -- if addressFamily is IPv6, size can't exceed 128 --
 
 END
