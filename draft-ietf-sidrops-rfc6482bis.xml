@@ -21,7 +21,7 @@
 
   <front>
 
-    <title abbrev="RPKI Signed Checklists">
+    <title>
       A Profile for Route Origin Authorizations (ROAs)
     </title>
 
