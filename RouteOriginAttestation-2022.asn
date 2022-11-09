@@ -25,18 +25,16 @@ RouteOriginAttestation ::= SEQUENCE {
 
 ASID ::= INTEGER (0..4294967295)
 
+-- Note: addressFamily can only be '0001'H (IPv4) or '0002'H (IPv6). --
 ROAIPAddressFamily ::= SEQUENCE {
-  -- Note: addressFamily can only be '0001'H (IPv4) or '0002'H (IPv6) --
   addressFamily         OCTET STRING (SIZE(2)),
-  addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress
-} 
+  addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress }
 
+-- Note: maxLength must be equal or larger than size of IPAddress, --
+-- and equal or smaller to what the AFI context permits.           --
 ROAIPAddress ::= SEQUENCE {
   address               IPAddress,
-  -- Note: maxLength must be equal or larger than size of IPAddress, --
-  -- and equal or smaller to what the AFI context permits --
-  maxLength             INTEGER (0..128) OPTIONAL
-} 
+  maxLength             INTEGER (0..128) OPTIONAL }
 
 -- Note: if the ROAIPAddressFamily's addressFamily is IPv4, the  --
 -- IPAddress' size cannot exceed 32; conversely if addressFamily --
