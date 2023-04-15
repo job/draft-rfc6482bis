@@ -239,18 +239,19 @@
               <li>less than or equal to the maximum length (in bits) of an IP address in the applicable address family: 32 in case of IPv4 and 128 in case of IPv6.</li>
             </ul>
             <t>
-              For example, if the IP address prefix is 203.0.113/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.
-              In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.
+              For example, if the IP address prefix is 203.0.113.0/24 and the maxLength is 26, the AS is authorized to advertise any more-specific prefix with a maximum length of 26.
+              In this example, the AS would be authorized to advertise 203.0.113.0/24, 203.0.113.128/25, or 203.0.113.192/26; but not 203.0.113.0/27.
+              See <xref target="RFC9319"/> for more information on the use of maxLength.
             </t>
             <t>
               When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROAIPAddress' address field.
             </t>
           </section>
           <section>
-            <name>Superfluous encoding</name>
+            <name>Note on overlapping or superfluous information encoding</name>
               <t>
                 Note that a valid ROA may contain an IP address prefix (within a ROAIPAddress element) that is encompassed by another IP address prefix (within a separate ROAIPAddress element).
-                For example, a ROA may contain the prefix 203.0.113/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
+                For example, a ROA may contain the prefix 203.0.113.0/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
                 This ROA would authorize the indicated AS to advertise any prefix beginning with 203.0.113 with a minimum length of 24 and a maximum length of 26, as well as the specific prefix 203.0.113.0/28.
               </t>
               <t>
@@ -431,9 +432,10 @@ Decimal  Description                      References
 
       <references>
         <name>Informative References</name>
+        <?rfc include="reference.RFC.4648.xml"?>
         <?rfc include="reference.RFC.5280.xml"?>
         <?rfc include="reference.RFC.6480.xml"?>
-        <?rfc include="reference.RFC.4648.xml"?>
+        <?rfc include="reference.RFC.9319.xml"?>
       </references>
 
     </references>
