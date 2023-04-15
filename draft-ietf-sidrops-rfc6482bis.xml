@@ -4,13 +4,12 @@
 <?rfc subcompact="no"?>
 <?rfc symrefs="yes"?>
 <?rfc toc="yes"?>
-<?rfc tocdepth="3"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-ietf-sidrops-rfc6482bis-01"
+     docName="draft-ietf-sidrops-rfc6482bis-02"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -135,7 +134,7 @@
         </t>
         <ul>
           <li>Clarifications on the requirements for IP Addresses and AS Identifiers X.509 certificate extension.</li>
-          <li>Strengthening of ASN.1 formal notation.</li>
+          <li>Strengthening of ASN.1 formal notation and definitions.</li>
           <li>Incorporate errata.</li>
           <li>Add an example ROA payload and ROA as appendix.</li>
         </ul>
@@ -195,35 +194,71 @@
       </section>
 
       <section>
-        <name>ipAddrBlocks</name>
+        <name>Element ipAddrBlocks</name>
         <t>
           The ipAddrBlocks field encodes the set of IP address prefixes to which the AS is authorized to originate routes.
-          Note that the syntax here is more restrictive than that used in the IP Address Delegation extension defined in RFC 3779.
+          Note that the syntax here is more restrictive than that used in the IP Address Delegation extension defined in <xref target="RFC3779"/>.
           That extension can represent arbitrary address ranges, whereas ROAs need to represent only prefixes.
         </t>
-        <t>
-          Within the ROAIPAddressFamily structure, addressFamily contains the Address Family Identifier (AFI) of an IP address family.
-          This specification only supports IPv4 and IPv6.
-          Therefore, addressFamily MUST be either 0001 or 0002.
-          There MUST be only one instance of ROAIPAddressFamily per unique AFI.
-          The ROAIPAddressFamily structure MUST NOT appear more than twice.
-        </t>
-        <t>
-          Within a ROAIPAddress structure, the addresses field represents prefixes as a sequence of type IPAddress.
-          (See [RFC3779] for more details).
-          If present, the maxLength MUST be an integer greater than or equal to the length of the accompanying prefix, and less than or equal to the length (in bits) of an IP address in the address family (32 for IPv4 and 128 for IPv6).
-          When present, the maxLength specifies the maximum length of the IP address prefix that the AS is authorized to advertise.
-          (For example, if the IP address prefix is 203.0.113/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.
-          In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.)
-          When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROA.
-        </t>
-        <t>
-          Note that a valid ROA may contain an IP address prefix (within a ROAIPAddress element) that is encompassed by another IP address prefix (within a separate ROAIPAddress element).
-          For example, a ROA may contain the prefix 203.0.113/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
-          (Such a ROA would authorize the indicated AS to advertise any prefix beginning with 203.0.113 with a minimum length of 24 and a maximum length of 26, as well as the specific prefix 203.0.113.0/28.)
-          Additionally, a ROA MAY contain two ROAIPAddress elements, where the IP address prefix is identical in both cases.
-          However, this is NOT RECOMMENDED as, in such a case, the ROAIPAddress with the shorter maxLength grants no additional privileges to the indicated AS and thus can be omitted without changing the meaning of the ROA.
+        <section>
+          <name>Type ROAIPAddressFamily</name>
+          <t>
+            Within the ROAIPAddressFamily structure, the addressFamily field contains the Address Family Identifier (AFI) of an IP address family.
+            This specification only supports IPv4 and IPv6, therefore addressFamily MUST be either 0001 or 0002.
           </t>
+          <t>
+            There MUST be only one instance of ROAIPAddressFamily per unique AFI in the ROA.
+            Thus, the ROAIPAddressFamily structure MUST NOT appear more than twice.
+          </t>
+          <t>
+            The addresses field represents prefixes as a sequence of type ROAIPAddress.
+          </t>
+        </section>
+        <section>
+          <name>Type ROAIPAddress</name>
+          <t>
+            A ROAIPAddress structure is a sequence containing an address field of type IPAddress and an optional maxLength field of type INTEGER.
+          </t>
+          <section>
+            <name>Element address</name>
+            <t>
+              The address field represents a single IP address prefix.
+              See section 2.2.3.8 of <xref target="RFC3779"/> for more details on type IPAddress.
+            </t>
+          </section>
+          <section>
+            <name>Element maxLength</name>
+            <t>
+              When present, the maxLength specifies the maximum length of the IP address prefix that the AS is authorized to advertise.
+            </t>
+            <t>
+              If present, the maxLength MUST be:
+            </t>
+            <ul>
+              <li>an integer greater than or equal to the length of the accompanying prefix, and</li>
+              <li>less than or equal to the maximum length (in bits) of an IP address in the applicable address family: 32 in case of IPv4 and 128 in case of IPv6.</li>
+            </ul>
+            <t>
+              For example, if the IP address prefix is 203.0.113/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.
+              In this example, the AS would be authorized to advertise 203.0.113/24, 203.0.113.128/25, or 203.0.113.0/25, but not 203.0.113.0/27.
+            </t>
+            <t>
+              When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROAIPAddress' address field.
+            </t>
+          </section>
+          <section>
+            <name>Superfluous encoding</name>
+              <t>
+                Note that a valid ROA may contain an IP address prefix (within a ROAIPAddress element) that is encompassed by another IP address prefix (within a separate ROAIPAddress element).
+                For example, a ROA may contain the prefix 203.0.113/24 with maxLength 26, as well as the prefix 203.0.113.0/28 with maxLength 28.
+                This ROA would authorize the indicated AS to advertise any prefix beginning with 203.0.113 with a minimum length of 24 and a maximum length of 26, as well as the specific prefix 203.0.113.0/28.
+              </t>
+              <t>
+                Additionally, a ROA MAY contain two ROAIPAddress elements, where the IP address prefix is identical in both cases.
+                However, this is NOT RECOMMENDED as, in such a case, the ROAIPAddress with the shorter maxLength grants no additional privileges to the indicated AS and thus can be omitted without changing the meaning of the ROA.
+              </t>
+            </section>
+          </section>
         </section>
       </section>
 
@@ -238,7 +273,7 @@
             The IP Address Delegation extension <xref target="RFC3779"/> is present in the end-entity (EE) certificate (contained within the ROA), and every IP address prefix(es) in the ROA payload is contained within the set of IP addresses specified by the EE certificate's IP Address Delegation extension.
           </li>
           <li>
-            The EE certificate MUST NOT use "inherit" elements as described in <xref target="RFC3779"/>.
+            The EE certificate MUST NOT use "inherit" elements described in <xref target="RFC3779"/>.
           </li>
           <li>
             The Autonomous System Identifier Delegation Extension described in <xref target="RFC3779"/> is not used in Route Origin Authorizations and MUST NOT be present.
