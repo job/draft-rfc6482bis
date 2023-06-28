@@ -25,7 +25,7 @@ RouteOriginAttestation ::= SEQUENCE {
 
 ASID ::= INTEGER (0..4294967295)
 
--- Note: addressFamily can only be '0001'H (IPv4) or '0002'H (IPv6). --
+-- addressFamily must be '0001'H (IPv4) or '0002'H (IPv6). --
 ROAIPAddressFamily ::= SEQUENCE {
   addressFamily         OCTET STRING (SIZE(2)),
   addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress }
