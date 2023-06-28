@@ -30,15 +30,15 @@ ROAIPAddressFamily ::= SEQUENCE {
   addressFamily         OCTET STRING (SIZE(2)),
   addresses             SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress }
 
--- Note: maxLength must be equal or larger than size of IPAddress, --
--- and equal or smaller to what the AFI context permits.           --
+-- maxLength must be greater than or equal to the size of IPAddress, --
+-- and smaller than or equal to what the AFI context permits.        --
 ROAIPAddress ::= SEQUENCE {
   address               IPAddress,
   maxLength             INTEGER (0..128) OPTIONAL }
 
--- Note: if the ROAIPAddressFamily's addressFamily is IPv4, the  --
--- IPAddress' size cannot exceed 32; conversely if addressFamily --
--- is IPv6, size can't exceed 128.                               --
+-- If the ROAIPAddressFamily's addressFamily is IPv4, the size of --
+-- the IPAddress cannot exceed 32. If addressFamily is IPv6, the  --
+-- size cannot exceed 128.                                        --
 IPAddress ::= BIT STRING (SIZE(0..128))
 
 END

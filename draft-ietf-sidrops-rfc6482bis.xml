@@ -133,7 +133,7 @@
           This section summarizes the significant changes between <xref target="RFC6482"/> and the profile described in this document.
         </t>
         <ul>
-          <li>Clarifications on the requirements for IP Addresses and AS Identifiers X.509 certificate extension.</li>
+          <li>Clarifications on the requirements for the IP Addresses and AS Identifiers X.509 certificate extensions.</li>
           <li>Strengthening of ASN.1 formal notation and definitions.</li>
           <li>Incorporate errata.</li>
           <li>Add an example ROA payload and ROA as appendix.</li>
@@ -180,14 +180,14 @@
       <sourcecode type="asn.1" src="RouteOriginAttestation-2022.asn"/>
 
       <section>
-        <name>version</name>
+        <name>Element version</name>
         <t>
           The version number of the RouteOriginAttestation MUST be 0.
         </t>
       </section>
 
       <section>
-        <name>asID</name>
+        <name>Element asID</name>
         <t>
           The asID field contains the AS number that is authorized to originate routes to the given IP address prefixes.
         </t>
@@ -239,7 +239,7 @@
               <li>less than or equal to the maximum length (in bits) of an IP address in the applicable address family: 32 in case of IPv4 and 128 in case of IPv6.</li>
             </ul>
             <t>
-              For example, if the IP address prefix is 203.0.113.0/24 and the maxLength is 26, the AS is authorized to advertise any more-specific prefix with a maximum length of 26.
+              For example, if the IP address prefix is 203.0.113.0/24 and the maxLength is 26, the AS is authorized to advertise any more specific prefix with a maximum length of 26.
               In this example, the AS would be authorized to advertise 203.0.113.0/24, 203.0.113.128/25, or 203.0.113.192/26; but not 203.0.113.0/27.
               See <xref target="RFC9319"/> for more information on the use of maxLength.
             </t>
