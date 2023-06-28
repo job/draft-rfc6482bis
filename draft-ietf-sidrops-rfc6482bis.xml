@@ -478,7 +478,7 @@ $ echo 302402023CCA301E301C04020002301630090307002001067C208C30090307002A0EB2400
       <t>
         Below is a complete <xref target="RFC4648">Base64</xref> encoded RPKI ROA Signed Object.
       </t>
-      <artwork>
+      <artwork anchor="object">
 <![CDATA[
 MIIHCwYJKoZIhvcNAQcCoIIG/DCCBvgCAQMxDTALBglghkgBZQMEAgEwNwYLKoZIhvcNAQkQ
 ARigKAQmMCQCAjzKMB4wHAQCAAIwFjAJAwcAIAEGfCCMMAkDBwAqDrJAAACgggT7MIIE9zCC
@@ -516,7 +516,31 @@ Rpn9l5nu7kUlZqXbV39Mfv8WCzctaUyc+Ag311sfWu5s6XaX3PtT9V4TnQhbSWcvR9NgM+As
 NqelVbdJ/iA2SeNHU/65xf6dDE2zdHDfsw==
 ]]>
       </artwork>
+      <t>
+        The object in <xref target="object"/> has the following properties:
+      </t>
+      <artwork align="center">
+<![CDATA[
+Object
+SHA256 hash:            13afbad09ed59b315efd8722d38b09fd02962e376e4def32247f9de905649b47
+Size:                   1807 octets
 
+CMS signing time:       Fri 17 Jun 2022 00:24:22 +0000
+
+X.509 end-entity certificate
+Subject key id:         A3D964245749BB6DD5AB1F2E830E33A6C5146E8F
+Authority key id:       38E14F92FDC7CCFBFC182361523AE27D697E952F
+Issuer:                 /CN=38e14f92fdc7ccfbfc182361523ae27d697e952f
+Serial:                 86F9
+Not before:             Fri 17 Jun 2022 00:24:22 +0000
+Not after:              Sat 01 Jul 2023 00:00:00 +0000
+IP address delegation:  2001:67c:208c::/48, 2a0e:b240::/48
+
+eContent
+asID:                   15562
+addresses:              2001:67c:208c::/48, 2a0e:b240::/48
+]]>
+      </artwork>
     </section>
   </back>
 
