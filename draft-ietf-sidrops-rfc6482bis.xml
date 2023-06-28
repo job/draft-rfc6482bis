@@ -443,7 +443,7 @@ Decimal  Description                      References
     <section anchor="acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        The authors wish to thank Charles Gardiner and Russ Housley for their help and contributions.
+        The authors wish to thank Theo Buehler, Charles Gardiner, and Russ Housley for their help and contributions.
         Additionally, the authors thank Rob Austein, Roque Gagliano, Danny McPherson, and Sam Weiler for their careful reviews and helpful comments.
       </t>
     </section>
