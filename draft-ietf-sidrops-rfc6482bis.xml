@@ -189,21 +189,21 @@
       <section>
         <name>Element asID</name>
         <t>
-          The asID field contains the AS number that is authorized to originate routes to the given IP address prefixes.
+          The asID element contains the AS number that is authorized to originate routes to the given IP address prefixes.
         </t>
       </section>
 
       <section>
         <name>Element ipAddrBlocks</name>
         <t>
-          The ipAddrBlocks field encodes the set of IP address prefixes to which the AS is authorized to originate routes.
+          The ipAddrBlocks element encodes the set of IP address prefixes to which the AS is authorized to originate routes.
           Note that the syntax here is more restrictive than that used in the IP Address Delegation extension defined in <xref target="RFC3779"/>.
           That extension can represent arbitrary address ranges, whereas ROAs need to represent only prefixes.
         </t>
         <section>
           <name>Type ROAIPAddressFamily</name>
           <t>
-            Within the ROAIPAddressFamily structure, the addressFamily field contains the Address Family Identifier (AFI) of an IP address family.
+            Within the ROAIPAddressFamily structure, the addressFamily element contains the Address Family Identifier (AFI) of an IP address family.
             This specification only supports IPv4 and IPv6, therefore addressFamily MUST be either 0001 or 0002.
           </t>
           <t>
@@ -211,18 +211,18 @@
             Thus, the ROAIPAddressFamily structure MUST NOT appear more than twice.
           </t>
           <t>
-            The addresses field represents prefixes as a sequence of type ROAIPAddress.
+            The addresses element represents prefixes as a sequence of type ROAIPAddress.
           </t>
         </section>
         <section>
           <name>Type ROAIPAddress</name>
           <t>
-            A ROAIPAddress structure is a sequence containing an address field of type IPAddress and an optional maxLength field of type INTEGER.
+            A ROAIPAddress structure is a sequence containing an address element of type IPAddress and an optional maxLength element of type INTEGER.
           </t>
           <section>
             <name>Element address</name>
             <t>
-              The address field represents a single IP address prefix.
+              The address element represents a single IP address prefix.
               See section 2.2.3.8 of <xref target="RFC3779"/> for more details on type IPAddress.
             </t>
           </section>
@@ -244,7 +244,7 @@
               See <xref target="RFC9319"/> for more information on the use of maxLength.
             </t>
             <t>
-              When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROAIPAddress' address field.
+              When the maxLength is not present, the AS is only authorized to advertise the exact prefix specified in the ROAIPAddress' address element.
             </t>
           </section>
           <section>
