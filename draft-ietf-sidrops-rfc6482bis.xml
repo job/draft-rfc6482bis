@@ -307,13 +307,13 @@
       <section>
         <name>SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)</name>
         <t>
-          The IANA has allocated for this document in the "SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)" registry:
+          The IANA is requested to update the id-ct-routeOriginAuthz entry in the "SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)" registry as follows:
         </t>
         <artwork>
 <![CDATA[
 Decimal   Description             References
 ---------------------------------------------------------------
-  24      id-ct-routeOriginAuthz  [RFC6482][RFC-to-be]
+  24      id-ct-routeOriginAuthz  [RFC-to-be]
 ]]>
         </artwork>
         <t>
@@ -324,13 +324,13 @@ Decimal   Description             References
       <section>
         <name>RPKI Signed Objects sub-registry</name>
         <t>
-          The IANA has registered the OID for the RPKI Signed Checklist in the "RPKI Signed Objects" registry created by <xref target="RFC6488"/> as follows:
+          The IANA is requested to update the entry for the Route Origination Authorization in the "RPKI Signed Objects" registry created by <xref target="RFC6488"/> as follows:
         </t>
         <artwork>
 <![CDATA[
-Name              OID                         Specification
--------------------------------------------------------------
-ROA               1.2.840.113549.1.9.16.1.24  [RFC6482][RFC-TBD]
+Name                             OID                         Specification
+--------------------------------------------------------------------------
+Route Origination Authorization  1.2.840.113549.1.9.16.1.24  [RFC-to-be]
 ]]>
         </artwork>
       </section>
@@ -338,13 +338,13 @@ ROA               1.2.840.113549.1.9.16.1.24  [RFC6482][RFC-TBD]
       <section>
         <name>File Extension</name>
         <t>
-          The IANA has added an item for the ROA file extension to the "RPKI Repository Name Schemes" registry created by <xref target="RFC6481"/> as follows:
+          The IANA is requested to update the entry for the ROA file extension in the "RPKI Repository Name Schemes" registry created by <xref target="RFC6481"/> as follows:
         </t>
         <artwork>
 <![CDATA[
 Filename Extension  RPKI Object                     Reference
 ------------------------------------------------------------------------
-       .roa         Route Origination Authorization [RFC6481][RFC-to-be]
+       .roa         Route Origination Authorization [RFC-to-be]
 ]]>
         </artwork>
         <t>
@@ -359,9 +359,9 @@ Filename Extension  RPKI Object                     Reference
         </t>
         <artwork>
 <![CDATA[
-Decimal  Description                      References
------------------------------------------------------------------------
-    TBD  id-mod-rpkiROA-2022              [RFC-to-be]
+Decimal  Description             Reference
+--------------------------------------------
+    TBD  id-mod-rpkiROA-2022     [RFC-to-be]
 ]]>
         </artwork>
       </section>
@@ -443,7 +443,7 @@ Decimal  Description                      References
     <section anchor="acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        The authors wish to thank Theo Buehler, Charles Gardiner, and Russ Housley for their help and contributions.
+        The authors wish to thank Theo Buehler, Ties de Kock, Charles Gardiner, and Russ Housley for their help and contributions.
         Additionally, the authors thank Rob Austein, Roque Gagliano, Danny McPherson, and Sam Weiler for their careful reviews and helpful comments.
       </t>
     </section>
