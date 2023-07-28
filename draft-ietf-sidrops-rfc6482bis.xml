@@ -9,7 +9,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-ietf-sidrops-rfc6482bis-04"
+     docName="draft-ietf-sidrops-rfc6482bis-05"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -135,19 +135,18 @@
         <ul>
           <li>Clarifications on the requirements for the IP Addresses and AS Identifiers X.509 certificate extensions.</li>
           <li>Strengthening of ASN.1 formal notation and definitions.</li>
-          <li>Incorporate errata.</li>
-          <li>Add an example ROA payload and ROA as appendix.</li>
+          <li>Errata have been incorporated.</li>
+          <li>An example ROA eContent payload and ROA were added as appendix.</li>
+          <li>A canonicalization procedure for ipAddrBlocks was added as appendix.</li>
         </ul>
       </section>
     </section>
 
     <section anchor="Related">
       <name>Related Work</name>
-
       <t>
         It is assumed that the reader is familiar with the terms and concepts described in "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile" <xref target="RFC5280"/> and "X.509 Extensions for IP Addresses and AS Identifiers" <xref target="RFC3779"/>.
       </t>
-
       <t>
         Additionally, this document makes use of the RPKI signed object profile <xref target="RFC6488"/>; thus, familiarity with that document is assumed.
         Note that the RPKI signed object profile makes use of certificates adhering to the RPKI Resource Certificate Profile <xref target="RFC6487"/>; thus, familiarly with that profile is also assumed.
@@ -157,19 +156,15 @@
 
     <section anchor="content">
       <name>The ROA ContentType</name>
-
       <t>
         The content-type for a ROA is defined as routeOriginAuthz and has the numerical value of 1.2.840.113549.1.9.16.1.24.
       </t>
-
       <t>
         This OID MUST appear both within the eContentType in the encapContentInfo object as well as the ContentType signed attribute in the signerInfo object (see <xref target="RFC6488"/>).
       </t>
-
     </section>
 
     <section anchor="econtent">
-
       <name>The ROA eContent</name>
       <t>
         The content of a ROA identifies a single AS that has been authorized by the address space holder to originate routes and a list of one or more IP address prefixes that will be advertised.
@@ -198,20 +193,21 @@
         <t>
           The ipAddrBlocks element encodes the set of IP address prefixes to which the AS is authorized to originate routes.
           Note that the syntax here is more restrictive than that used in the IP Address Delegation extension defined in <xref target="RFC3779"/>.
-          That extension can represent arbitrary address ranges, whereas ROAs need to represent only prefixes.
+          That extension can represent arbitrary address ranges, whereas ROAs need to represent only IP prefixes.
         </t>
         <section>
           <name>Type ROAIPAddressFamily</name>
           <t>
             Within the ROAIPAddressFamily structure, the addressFamily element contains the Address Family Identifier (AFI) of an IP address family.
             This specification only supports IPv4 and IPv6, therefore addressFamily MUST be either 0001 or 0002.
+            IPv4 prefixes MUST NOT appear as IPv4-Mapped IPv6 Addresses (section 2.5.5.2 of <xref target="RFC4291"/>).
           </t>
           <t>
             There MUST be only one instance of ROAIPAddressFamily per unique AFI in the ROA.
             Thus, the ROAIPAddressFamily structure MUST NOT appear more than twice.
           </t>
           <t>
-            The addresses element represents prefixes as a sequence of type ROAIPAddress.
+            The addresses element represents IP prefixes as a sequence of type ROAIPAddress.
           </t>
         </section>
         <section>
@@ -230,6 +226,7 @@
             <name>Element maxLength</name>
             <t>
               When present, the maxLength specifies the maximum length of the IP address prefix that the AS is authorized to advertise.
+              The maxLength element SHOULD NOT be encoded if the maximum length is equal to the prefix length.
             </t>
             <t>
               If present, the maxLength MUST be:
@@ -259,6 +256,12 @@
                 However, this is NOT RECOMMENDED as, in such a case, the ROAIPAddress with the shorter maxLength grants no additional privileges to the indicated AS and thus can be omitted without changing the meaning of the ROA.
               </t>
             </section>
+          </section>
+          <section>
+            <name>Canonical form</name>
+            <t>
+              The contents of ipAddrBlocks SHOULD be deduplicated and SHOULD be sorted using the procedure specified in <xref target="canonicalform"/>.
+            </t>
           </section>
         </section>
       </section>
@@ -432,10 +435,27 @@ Decimal  Description             Reference
 
       <references>
         <name>Informative References</name>
+        <?rfc include="reference.RFC.4291.xml"?>
         <?rfc include="reference.RFC.4648.xml"?>
         <?rfc include="reference.RFC.5280.xml"?>
         <?rfc include="reference.RFC.6480.xml"?>
         <?rfc include="reference.RFC.9319.xml"?>
+         <reference anchor="roasort-c" target="https://github.com/job/roasort">
+          <front>
+            <title>ROA sorter in C</title>
+            <author initials="J." surname="Snijders">
+              <organization>Fastly</organization>
+            </author>
+          </front>
+        </reference>
+         <reference anchor="roasort-rs" target="https://github.com/benmaddison/roasort">
+          <front>
+            <title>ROA sorter in Rust</title>
+            <author initials="B." surname="Maddison">
+              <organization>Workonline</organization>
+            </author>
+          </front>
+        </reference>
       </references>
 
     </references>
@@ -443,7 +463,7 @@ Decimal  Description             Reference
     <section anchor="acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        The authors wish to thank Theo Buehler, Ties de Kock, Charles Gardiner, and Russ Housley for their help and contributions.
+        The authors wish to thank Theo Buehler, Ties de Kock, Charles Gardiner, Russ Housley, Jeffrey Haas, and Bob Beck for their help and contributions.
         Additionally, the authors thank Rob Austein, Roque Gagliano, Danny McPherson, and Sam Weiler for their careful reviews and helpful comments.
       </t>
     </section>
@@ -542,6 +562,54 @@ addresses:              2001:67c:208c::/48, 2a0e:b240::/48
 ]]>
       </artwork>
     </section>
+    <section anchor="canonicalform">
+      <name>Canonical form for ROA eContent</name>
+      <t>
+        As the data structure described by the ROA ASN.1 module allows for many different ways to represent the same set of IP address information, a canonical form is defined such that every set of IP address information has a unique representation.
+        In order to produce and verify this canonical form, the process described in this section SHOULD be used to ensure information elements are unique with respect to one another and sorted in ascending order.
+        This canonicalization procedure builds upon the canonicalization procedure specified in section 2.2.3.6 of <xref target="RFC3779"/>.
+      </t>
+      <t>
+        In order to semantically compare, sort, and deduplicate the contents of the ipAddrBlocks field, each ROAIPAddress element is mapped to an abstract data element composed of four integer values:
+      </t>
+      <dl>
+        <dt>afi</dt>  <dd>The AFI value appearing in the addressFamily field of the containing ROAIPAddressFamily as an integer.</dd>
+        <dt>addr</dt> <dd>The first IP address of the IP prefix appearing in the ROAIPAddress address field, as 32-bit (IPv4) or 128-bit (IPv6) integer value.</dd>
+        <dt>plen</dt> <dd>The prefix length of the IP prefix appearing in the ROAIPAddress address field as an integer value.</dd>
+        <dt>mlen</dt> <dd>The value appearing in the maxLength field of the ROAIPAddress, if present, otherwise the above prefix length value.</dd>
+      </dl>
+      <t>
+        Thus, the equality or relative order of two ROAIPAddress elements can be tested by comparing their abstract representations.
+      </t>
+      <section>
+        <name>Comparator</name>
+        <ol>
+          <li>
+            Data elements with a lower afi value precede data elements with a higher afi value.
+          </li>
+          <li>
+            Data elements with a lower addr value precede data elements with a higher addr value.
+          </li>
+          <li>
+            Data elements with a lower plen value precede data elements with a higher plen value.
+          </li>
+          <li>
+            Data elements with a lower mlen value precede data elements with a higher mlen value.
+          </li>
+        </ol>
+        <t>
+          Data elements for which all four values compare equal are duplicates of one another.
+        </t>
+      </section>
+      <section>
+        <name>Example implementations</name>
+        <t>
+          A sorting implementation <xref target="roasort-c"/> in ISO/IEC 9899:1999 ("ANSI C99").
+        </t>
+        <t>
+          A sorting implementation <xref target="roasort-rs"/> in Rust 2021 Edition.
+        </t>
+      </section>
+    </section>
   </back>
-
 </rfc>
