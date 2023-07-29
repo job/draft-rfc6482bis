@@ -39,6 +39,18 @@
       </address>
     </author>
 
+    <author fullname="Ben Maddison" initials="B" surname="Maddison">
+      <organization abbrev="Workonline">Workonline</organization>
+      <address>
+        <postal>
+          <street/>
+          <city>Cape Town</city>
+          <country>South Africa</country>
+        </postal>
+        <email>benm@workonline.africa</email>
+      </address>
+    </author>
+
     <author fullname="Matthew Lepinski" initials="M." surname="Lepinski">
       <organization>New College Florida</organization>
       <address>
@@ -75,18 +87,6 @@
           <country/>
         </postal>
         <email>kent@alum.mit.edu</email>
-      </address>
-    </author>
-
-    <author fullname="Ben Maddison" initials="B" surname="Maddison">
-      <organization abbrev="Workonline">Workonline</organization>
-      <address>
-        <postal>
-          <street/>
-          <city>Cape Town</city>
-          <country>South Africa</country>
-        </postal>
-        <email>benm@workonline.africa</email>
       </address>
     </author>
 
