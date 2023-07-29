@@ -78,6 +78,18 @@
       </address>
     </author>
 
+    <author fullname="Ben Maddison" initials="B" surname="Maddison">
+      <organization abbrev="Workonline">Workonline</organization>
+      <address>
+        <postal>
+          <street/>
+          <city>Cape Town</city>
+          <country>South Africa</country>
+        </postal>
+        <email>benm@workonline.africa</email>
+      </address>
+    </author>
+
     <abstract>
       <t>
          This document defines a standard profile for Route Origin Authorizations (ROAs).
@@ -172,7 +184,7 @@
         A ROA is formally defined as:
       </t>
 
-      <sourcecode type="asn.1" src="RouteOriginAttestation-2022.asn"/>
+      <sourcecode type="asn.1" src="RouteOriginAttestation-2023.asn"/>
 
       <section>
         <name>Element version</name>
