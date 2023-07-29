@@ -43,7 +43,7 @@ AddressFamilySet AFI ::= { addressFamilyIPv4 | addressFamilyIPv6 }
 
 ROAIPAddress {INTEGER: len} ::= SEQUENCE {
   address       BIT STRING (SIZE(0..len)),
-  maxLength     INTEGER (0..len) }
+  maxLength     INTEGER (0..len) OPTIONAL }
 
 ROAIPAddressFamily ::= SEQUENCE {
   addressFamily AFI.&afi ({AddressFamilySet}),
