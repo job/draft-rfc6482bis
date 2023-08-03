@@ -147,7 +147,7 @@
         <ul>
           <li>Clarified the requirements for the IP Addresses and AS Identifiers X.509 certificate extensions.</li>
           <li>Strengthened the ASN.1 formal notation and definitions.</li>
-          <li>Incorporated Errata for RFC 6488.</li>
+          <li>Incorporated RFC 6482 Errata.</li>
           <li>Added an example ROA eContent payload and an ROA.</li>
           <li>Specified a canonicalization procedure for the content of ipAddrBlocks.</li>
         </ul>
