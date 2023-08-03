@@ -9,7 +9,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-ietf-sidrops-rfc6482bis-05"
+     docName="draft-ietf-sidrops-rfc6482bis-06"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -145,11 +145,11 @@
           This section summarizes the significant changes between <xref target="RFC6482"/> and the profile described in this document.
         </t>
         <ul>
-          <li>Clarifications on the requirements for the IP Addresses and AS Identifiers X.509 certificate extensions.</li>
-          <li>Strengthening of ASN.1 formal notation and definitions.</li>
-          <li>Errata have been incorporated.</li>
-          <li>An example ROA eContent payload and ROA were added as appendix.</li>
-          <li>A canonicalization procedure for ipAddrBlocks was added as appendix.</li>
+          <li>Clarified the requirements for the IP Addresses and AS Identifiers X.509 certificate extensions.</li>
+          <li>Strengthened the ASN.1 formal notation and definitions.</li>
+          <li>Incorporated Errata for RFC 6488.</li>
+          <li>Added an example ROA eContent payload and an ROA.</li>
+          <li>Specified a canonicalization procedure for the content of ipAddrBlocks.</li>
         </ul>
       </section>
     </section>
