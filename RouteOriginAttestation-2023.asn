@@ -36,11 +36,11 @@ AFI ::= CLASS {
 
 AddressFamilySet AFI ::= { addressFamilyIPv4 | addressFamilyIPv6 }
 
-addressFamilyIPv4 AFI ::= { AFI ipv4 ADDRESSES-TYPE ROAIPv4Addresses }
-addressFamilyIPv6 AFI ::= { AFI ipv6 ADDRESSES-TYPE ROAIPv6Addresses }
+addressFamilyIPv4 AFI ::= { AFI afi-IPv4 ADDRESSES-TYPE ROAIPv4Addresses }
+addressFamilyIPv6 AFI ::= { AFI afi-IPv6 ADDRESSES-TYPE ROAIPv6Addresses }
 
-ipv4 OCTET STRING ::= '0001'H
-ipv6 OCTET STRING ::= '0002'H
+afi-IPv4 OCTET STRING ::= '0001'H
+afi-IPv6 OCTET STRING ::= '0002'H
 
 ROAIPv4Addresses ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{32}
 ROAIPv6Addresses ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{128}
