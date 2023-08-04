@@ -26,24 +26,27 @@ RouteOriginAttestation ::= SEQUENCE {
 ASID ::= INTEGER (0..4294967295)
 
 ROAIPAddressFamily ::= SEQUENCE {
-  addressFamily AFI.&afi ({AddressFamilySet}),
-  addresses     AFI.&Addresses ({AddressFamilySet}{@addressFamily}) }
+  addressFamily ADDRESS-FAMILY.&afi ({AddressFamilySet}),
+  addresses     ADDRESS-FAMILY.&Addresses ({AddressFamilySet}{@addressFamily}) }
 
-AFI ::= CLASS {
+ADDRESS-FAMILY ::= CLASS {
   &afi          OCTET STRING (SIZE(2)) UNIQUE,
   &Addresses
-} WITH SYNTAX { AFI &afi ADDRESSES-TYPE &Addresses }
+} WITH SYNTAX { AFI &afi ADDRESSES &Addresses }
 
-AddressFamilySet AFI ::= { addressFamilyIPv4 | addressFamilyIPv6 }
+AddressFamilySet ADDRESS-FAMILY ::=
+  { addressFamilyIPv4 | addressFamilyIPv6 }
 
-addressFamilyIPv4 AFI ::= { AFI afi-IPv4 ADDRESSES-TYPE ROAIPv4Addresses }
-addressFamilyIPv6 AFI ::= { AFI afi-IPv6 ADDRESSES-TYPE ROAIPv6Addresses }
+addressFamilyIPv4 ADDRESS-FAMILY ::=
+  { AFI afi-IPv4 ADDRESSES ROAAddressesIPv4 }
+addressFamilyIPv6 ADDRESS-FAMILY ::=
+  { AFI afi-IPv6 ADDRESSES ROAAddressesIPv6 }
 
 afi-IPv4 OCTET STRING ::= '0001'H
 afi-IPv6 OCTET STRING ::= '0002'H
 
-ROAIPv4Addresses ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{32}
-ROAIPv6Addresses ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{128}
+ROAAddressesIPv4 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{32}
+ROAAddressesIPv6 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{128}
 
 ROAIPAddress {INTEGER: len} ::= SEQUENCE {
   address       BIT STRING (SIZE(0..len)),
