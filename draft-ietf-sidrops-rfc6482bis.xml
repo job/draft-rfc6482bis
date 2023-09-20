@@ -325,8 +325,7 @@
         <name>ROA Validation</name>
         <t>
           Before a relying party can use a ROA to validate a routing announcement, the relying party MUST first validate the ROA.
-          To validate a ROA, the relying party MUST perform all the validation checks specified in <xref target="RFC6488"/> as well as the following additional ROA-specific validation steps.
-          If any of these checks fail, the ROA in its entirety MUST be considered invalid and an error SHOULD be logged.
+          To validate a ROA, the relying party MUST perform all the validation checks specified in <xref target="RFC6488"/> as well as the following additional ROA-specific validation steps:
         </t>
         <ul>
           <li>
@@ -339,6 +338,9 @@
             The Autonomous System Identifier Delegation Extension described in <xref target="RFC3779"/> is not used in Route Origin Authorizations and MUST NOT be present in the EE certificate.
           </li>
         </ul>
+        <t>
+          If any of the above checks fail, the ROA in its entirety MUST be considered invalid and an error SHOULD be logged.
+        </t>
       </section>
 
      <section anchor="security">
