@@ -326,6 +326,7 @@
         <t>
           Before a relying party can use a ROA to validate a routing announcement, the relying party MUST first validate the ROA.
           To validate a ROA, the relying party MUST perform all the validation checks specified in <xref target="RFC6488"/> as well as the following additional ROA-specific validation steps.
+          If any of these checks fail, the ROA in its entirety MUST be considered invalid and an error SHOULD be logged.
         </t>
         <ul>
           <li>
