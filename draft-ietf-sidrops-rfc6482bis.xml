@@ -337,6 +337,9 @@
           <li>
             The Autonomous System Identifier Delegation Extension described in <xref target="RFC3779"/> is not used in Route Origin Authorizations and MUST NOT be present in the EE certificate.
           </li>
+          <li>
+            The ROA content fully conforms with all requirements specified in <xref target="content"/> and <xref target="econtent"/>.
+          </li>
         </ul>
         <t>
           If any of the above checks fail, the ROA in its entirety MUST be considered invalid and an error SHOULD be logged.
@@ -521,7 +524,7 @@ Decimal  Description             Reference
     <section anchor="acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        The authors wish to thank Theo Buehler, Ties de Kock, Charles Gardiner, Russ Housley, Jeffrey Haas, and Bob Beck for their help and contributions.
+        The authors wish to thank Theo Buehler, Ties de Kock, Martin Hoffmann, Charles Gardiner, Russ Housley, Jeffrey Haas, and Bob Beck for their help and contributions.
         Additionally, the authors thank Rob Austein, Roque Gagliano, Danny McPherson, Sam Weiler, and Jasdip Singh for their careful reviews and helpful comments.
       </t>
     </section>
