@@ -9,7 +9,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-ietf-sidrops-rfc6482bis-06"
+     docName="draft-ietf-sidrops-rfc6482bis-07"
      ipr="trust200902"
      xml:lang="en"
      sortRefs="true"
@@ -20,7 +20,7 @@
 
   <front>
 
-    <title>
+    <title abbrev="Route Origin Authorization">
       A Profile for Route Origin Authorizations (ROAs)
     </title>
 
