@@ -226,12 +226,12 @@
           <name>Type ROAIPAddress</name>
           <t>
             A ROAIPAddress structure is a sequence containing an address element of type IPAddress and an optional maxLength element of type INTEGER.
+            See section 2.2.3.8 of <xref target="RFC3779"/> for more details on type IPAddress.
           </t>
           <section>
             <name>Element address</name>
             <t>
-              The address element represents a single IP address prefix.
-              See section 2.2.3.8 of <xref target="RFC3779"/> for more details on type IPAddress.
+              The address element is of type IPAddress and represents a single IP address prefix.
             </t>
           </section>
           <section>
