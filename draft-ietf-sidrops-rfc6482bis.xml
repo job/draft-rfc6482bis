@@ -290,6 +290,9 @@
             </t>
             <section>
               <name>Comparator</name>
+              <t>
+                To impose total ordering, apply the below logic steps in the order they are listed.
+              </t>
               <ol>
                 <li>
                   Data elements with a lower afi value precede data elements with a higher afi value.
