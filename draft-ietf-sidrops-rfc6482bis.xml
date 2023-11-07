@@ -291,7 +291,8 @@
             <section>
               <name>Comparator</name>
               <t>
-                To impose total ordering, apply the below logic steps in the order they are listed.
+                The set of ipAddrBlocks is totally ordered.
+                The order of two ipAddrBlocks is determined by the first non-equal comparison in the following list.
               </t>
               <ol>
                 <li>
