@@ -281,7 +281,7 @@
             </t>
             <dl>
               <dt>afi</dt>  <dd>The AFI value appearing in the addressFamily field of the containing ROAIPAddressFamily as an integer.</dd>
-              <dt>addr</dt> <dd>The first IP address of the IP prefix appearing in the ROAIPAddress address field, as 32-bit (IPv4) or 128-bit (IPv6) integer value.</dd>
+              <dt>addr</dt> <dd>The first IP address of the IP prefix appearing in the ROAIPAddress address field, as a 32-bit (IPv4) or 128-bit (IPv6) integer value.</dd>
               <dt>plen</dt> <dd>The prefix length of the IP prefix appearing in the ROAIPAddress address field as an integer value.</dd>
               <dt>mlen</dt> <dd>The value appearing in the maxLength field of the ROAIPAddress, if present, otherwise the above prefix length value.</dd>
             </dl>
