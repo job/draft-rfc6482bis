@@ -45,11 +45,14 @@ addressFamilyIPv6 ADDRESS-FAMILY ::=
 afi-IPv4 OCTET STRING ::= '0001'H
 afi-IPv6 OCTET STRING ::= '0002'H
 
-ROAAddressesIPv4 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{32}
-ROAAddressesIPv6 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{128}
+ROAAddressesIPv4 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{ub-IPv4}
+ROAAddressesIPv6 ::= SEQUENCE (SIZE(1..MAX)) OF ROAIPAddress{ub-IPv6}
 
-ROAIPAddress {INTEGER: len} ::= SEQUENCE {
-  address       BIT STRING (SIZE(0..len)),
-  maxLength     INTEGER (0..len) OPTIONAL }
+ub-IPv4 INTEGER ::= 32
+ub-IPv6 INTEGER ::= 128
+
+ROAIPAddress {INTEGER: ub} ::= SEQUENCE {
+  address       BIT STRING (SIZE(0..ub)),
+  maxLength     INTEGER (0..ub) OPTIONAL }
 
 END
